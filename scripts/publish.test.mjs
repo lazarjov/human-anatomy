@@ -39,18 +39,18 @@ test("skill paths are rewritten to the gallery's .skill link, and nothing else",
 test("publishing copies only the source, under the author, and it rebuilds byte for byte", () => {
   const repo = gallery();
   try {
-    const { dest, figure } = publish({ source: join(SKILL, "examples", "dial-indicator"), into: repo, id: "dial-indicator", title: "Dial indicator", prompt: "/anatomy a dial indicator", author: "Octo-Cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true });
-    assert.equal(dest, join(repo, "figures", "octo-cat", "dial-indicator"));
+    const { dest, figure } = publish({ source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "Hip abductors", prompt: "/anatomy a hip in single-leg stance", author: "Octo-Cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true });
+    assert.equal(dest, join(repo, "figures", "octo-cat", "hip-abductors"));
     assert.equal(figure.author, "Octo-Cat");
-    assert.ok(!existsSync(join(dest, "src", "dial-indicator.html")) && !existsSync(join(dest, "src", "dial-indicator-light.html")) && !existsSync(join(dest, "poster.png")), "no built pages or poster are left");
+    assert.ok(!existsSync(join(dest, "src", "hip-abductors.html")) && !existsSync(join(dest, "src", "hip-abductors-light.html")) && !existsSync(join(dest, "poster.png")), "no built pages or poster are left");
     assert.equal(figure.kind, "SVG");
     assert.equal(figure.skill.kit, fingerprintOfSkill(SKILL));
     assert.deepEqual(figure.build, [["src/build.mjs", "--light"], ["src/build.mjs"]]);
-    assert.deepEqual(figure.pages, { dark: "src/dial-indicator.html", light: "src/dial-indicator-light.html" });
+    assert.deepEqual(figure.pages, { dark: "src/hip-abductors.html", light: "src/hip-abductors-light.html" });
     for (const command of figure.build) assert.equal(spawnSync(process.execPath, command, { cwd: dest }).status, 0);
-    for (const page of ["dial-indicator.html", "dial-indicator-light.html"]) assert.ok(readFileSync(join(dest, "src", page)).equals(readFileSync(join(SKILL, "examples", "dial-indicator", page))), page);
+    for (const page of ["hip-abductors.html", "hip-abductors-light.html"]) assert.ok(readFileSync(join(dest, "src", page)).equals(readFileSync(join(SKILL, "examples", "hip-abductors", page))), page);
     assert.ok(existsSync(join(repo, ".skill", "kit", "iso-kit.mjs")));
-    assert.throws(() => publish({ source: join(SKILL, "examples", "dial-indicator"), into: repo, id: "dial-indicator", title: "x", prompt: "x", author: "octo-cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], noPreview: true }), /already exists/);
+    assert.throws(() => publish({ source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "x", prompt: "x", author: "octo-cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], noPreview: true }), /already exists/);
   } finally {
     rmSync(repo, { recursive: true, force: true });
   }
@@ -59,7 +59,7 @@ test("publishing copies only the source, under the author, and it rebuilds byte 
 test("publishing refuses a folder that is not a gallery clone", () => {
   const empty = mkdtempSync(join(tmpdir(), "not-gallery-"));
   try {
-    assert.throws(() => publish({ source: join(SKILL, "examples", "dial-indicator"), into: empty, id: "x", title: "x", prompt: "x", author: "x", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], noPreview: true }), /doesn't look like a clone of anatomy-community/);
+    assert.throws(() => publish({ source: join(SKILL, "examples", "hip-abductors"), into: empty, id: "x", title: "x", prompt: "x", author: "x", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], noPreview: true }), /doesn't look like a clone of anatomy-community/);
   } finally {
     rmSync(empty, { recursive: true, force: true });
   }
@@ -68,8 +68,8 @@ test("publishing refuses a folder that is not a gallery clone", () => {
 test("publisher accepts only the gallery's supported licenses", () => {
   const repo = gallery();
   const command = (license, id) => spawnSync(process.execPath, [
-    join(SKILL, "scripts", "publish.mjs"), join(SKILL, "examples", "dial-indicator"),
-    "--into", repo, "--id", id, "--title", "Dial indicator", "--prompt", "/anatomy a dial indicator",
+    join(SKILL, "scripts", "publish.mjs"), join(SKILL, "examples", "hip-abductors"),
+    "--into", repo, "--id", id, "--title", "Hip abductors", "--prompt", "/anatomy a hip in single-leg stance",
     "--author", "Octo-Cat", "--license", license, "--no-preview",
   ], { encoding: "utf8" });
   try {
@@ -105,14 +105,14 @@ test("--submit: people who can push get a branch; everyone else a fork made for 
 
 test("a failed --force publish leaves the existing figure as it was", () => {
   const repo = gallery();
-  const common = { source: join(SKILL, "examples", "dial-indicator"), into: repo, id: "dial-indicator", title: "Dial indicator", prompt: "/anatomy a dial indicator", author: "octo-cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true };
+  const common = { source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "Hip abductors", prompt: "/anatomy a hip in single-leg stance", author: "octo-cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true };
   try {
     const { dest } = publish(common);
     const before = readFileSync(join(dest, "figure.json"), "utf8");
     assert.throws(() => publish({ ...common, force: true, pages: ["missing.html"] }), /page missing\.html not found/);
     assert.equal(readFileSync(join(dest, "figure.json"), "utf8"), before);
     assert.ok(existsSync(join(dest, "src", "build.mjs")));
-    assert.deepEqual(readdirSync(join(repo, "figures", "octo-cat")), ["dial-indicator"]);
+    assert.deepEqual(readdirSync(join(repo, "figures", "octo-cat")), ["hip-abductors"]);
   } finally {
     rmSync(repo, { recursive: true, force: true });
   }

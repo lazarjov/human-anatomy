@@ -7,7 +7,7 @@ import { promisify } from "node:util";
 import test from "node:test";
 
 const execute = promisify(execFile);
-const page = "examples/turning-dial/turning-dial-verify-light.html";
+const page = "tests/fixtures/turn-verify-light.html";
 async function run(args) {
   try { return { code: 0, ...await execute(process.execPath, ["scripts/turn-check.mjs", page, ...args], { timeout: 60000 }) }; }
   catch (error) { return { code: error.code, stdout: error.stdout, stderr: error.stderr }; }

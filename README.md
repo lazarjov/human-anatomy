@@ -1,6 +1,6 @@
-<h1 align="center">Anatomy</h1>
+<h1 align="center">Human Anatomy</h1>
 
-<p align="center"><b>A Claude skill that explains an idea by building it as a real, working object.</b><br>Also runs in Antigravity, OpenCode, Codex and MiniMax Code.<br>Crafted, interactive isometric figures with many small precise parts, in SVG, WebGL and 3D.</p>
+<p align="center"><b>A Claude skill that explains human anatomy and biomechanics by building it as a real, working object.</b><br>Also runs in Antigravity, OpenCode, Codex and MiniMax Code.<br>Crafted, interactive isometric figures with many small precise parts, in SVG, WebGL and 3D.</p>
 
 <p align="center">
   <a href="https://code.claude.com/docs/en/skills"><img src="https://img.shields.io/badge/Claude_Code-skill-1b1b19?style=flat-square&logo=claude&logoColor=white" alt="Claude Code skill"></a>
@@ -12,8 +12,6 @@
 </p>
 
 <p align="center">
-  <a href="https://skills.wheresryan.sh/anatomy"><img src="https://img.shields.io/badge/Website-skills.wheresryan.sh%2Fanatomy-1b1b19?style=for-the-badge" alt="Website: skills.wheresryan.sh/anatomy"></a>
-  &nbsp;
   <a href="https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/Download-ZIP-1b1b19?style=for-the-badge&logo=github&logoColor=white" alt="Download ZIP"></a>
   &nbsp;
   <a href="#install"><img src="https://img.shields.io/badge/Install-npx_skills_add-d7d7d0?style=for-the-badge&labelColor=1b1b19&logo=npm&logoColor=white" alt="Install with npx"></a>
@@ -31,19 +29,19 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/raptor-engine-firing.webp" width="640" alt="An isometric drawing of a Raptor 2 rocket engine hanging in a test stand, firing: a red exhaust plume, drawn by a WebGL shader, pours onto the stand's base plate. The card reads Fig 1, Raptor 2 test stand, Pc 300 bar, 230 tf.">
+  <img src=".github/assets/foot-pronation.webp" width="640" alt="An isometric drawing of a skeletal left foot standing on a plantar pressure mat, overpronated: the heel everts, a heel pointer reads the angle on an arc, the arch has dropped, and the pressure cells under the inner arch are darkest. The card reads Fig 1, Subtalar pronation.">
 </p>
 
-<p align="center"><sub><code>examples/raptor-engine</code>, light theme, firing. The engine and stand are SVG; the plume is a WebGL shader in the same isometric camera.</sub></p>
+<p align="center"><sub><code>examples/foot-pronation</code>, light theme, overpronated. Every bone, sensor cell and gauge is SVG, and the pressure map comes from the same model that moves the bones.</sub></p>
 
 ---
 
-Ask Claude for a figure that explains a technical idea, and Anatomy has it invent a physical thing whose working *is* the concept. A cache key that skips work when nothing changed becomes a pin-tumbler lock that only turns when every pin matches. One GPU context serving many canvases becomes a gantry plotter whose single print head visits 16 wells.
+Ask Claude for a figure that explains how the body moves, and Anatomy has it invent a lab instrument whose working *is* the concept. Why the hip carries nearly three times body weight when you stand on one leg becomes a pelvis balanced on one femoral head, with the abductor muscle pulling through a load cell. How high you jump becomes a leg model on a force plate, whose force trace integrates to takeoff velocity and flight time.
 
-Then Claude builds that thing out of dozens of small, solid, shaded parts, puts it in a framed card with a title, a hint and a live readout, makes it move calmly under the pointer and the keyboard, and checks its own work by zooming in on every joint. Every number the figure shows comes from the same small model that moves its parts.
+Then Claude builds that thing out of dozens of small, solid, shaded parts: bones as turned solids with steel pins at the joints, muscles and tendons that end on their real attachments, and the force plates, pressure mats, goniometers and dials that measure them. It puts the figure in a framed card with a title, a hint and a live readout, makes it move calmly under the pointer and the keyboard, and checks its own work by zooming in on every joint. Every number the figure shows comes from the same small biomechanics model that moves its parts.
 
 > [!NOTE]
-> **This fork adds human anatomy and biomechanics.** [`lazarjov/human-anatomy`](https://github.com/lazarjov/human-anatomy) is a fork of [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) with six new examples: gait, foot pronation, a countermovement jump, the knee extensor mechanism, the ankle as a lever and the hip in single-leg stance. Each one is a skeletal model on a lab instrument, such as a force plate, a pressure mat, a load cell or a goniometer, and every number it shows comes from a small biomechanics model. See [Human anatomy and biomechanics](#human-anatomy-and-biomechanics).
+> **This is a fork of [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) focused on human anatomy and biomechanics.** The kit, the craft rules and the checks are unchanged. The original machine examples (the Raptor engine, ripple tank, turning dial and others) are replaced here by six biomechanics examples: gait, foot pronation, a countermovement jump, the knee extensor mechanism, the ankle as a lever and the hip in single-leg stance. The guides in `references/` still cite the originals for advanced techniques (WebGL, React, the 3D mode); those live upstream.
 
 ## Quick start
 
@@ -56,7 +54,7 @@ The CLI asks which agents to set up (Claude Code, Antigravity, OpenCode, Codex, 
 Then, in Claude Code:
 
 ```text
-/anatomy explain how a token bucket rate limiter works, interactive
+/anatomy show what happens at the knee in a deep squat, interactive
 ```
 
 For Antigravity, OpenCode, Codex, or MiniMax Code, target that agent: `-a antigravity`, `-a opencode`, `-a codex`, or `-a minimax-code`. Antigravity, OpenCode and MiniMax Code take the same `/anatomy` command; in Codex, type `$anatomy`.
@@ -64,27 +62,6 @@ For Antigravity, OpenCode, Codex, or MiniMax Code, target that agent: `-a antigr
 That's it. No API keys and nothing to `npm install`: the kit uses only Node's built-in modules.
 
 ## Gallery
-
-<table>
-  <tr>
-    <td width="50%"><img src=".github/assets/raptor-engine-apart.webp" alt="The Raptor 2 engine taken apart in its test stand: its assemblies, pipes and harness hang apart from each other between the posts of the stand."></td>
-    <td width="50%"><img src=".github/assets/ripple-tank.webp" alt="A school ripple tank on four tall legs, with a lamp on an arm above it. Two dippers on a vibrating bar make interfering waves, and their caustics are projected onto the paper screen under the tank."></td>
-  </tr>
-  <tr>
-    <td><sub><b>raptor-engine</b>: hover to take it apart into 11 assemblies. An audit proves that no pipe passes through anything, at rest, apart and in every frame between.</sub></td>
-    <td><sub><b>ripple-tank</b>: SVG apparatus over two WebGL layers (lamp light and caustics on the paper, reflections in the water) driven by a dispersion and optics model.</sub></td>
-  </tr>
-  <tr>
-    <td><img src=".github/assets/turning-dial.webp" alt="A combination dial on a raised door plate. A small gold and chrome robot hand lies on the dial and turns with it; a green light glows under one fingertip."></td>
-    <td><img src=".github/assets/dial-indicator.webp" alt="A dial indicator gauge on a stand above a base plate with a ruler strip. Its plunger rests on one of three gauge blocks on a sliding carriage."></td>
-  </tr>
-  <tr>
-    <td><sub><b>turning-dial</b>: the 3D mode (beta). About 90 parts are re-projected and re-shaded every frame as you drag the dial.</sub></td>
-    <td><sub><b>dial-indicator</b>: the smallest example, about 300 lines. Hover to slide the carriage; the needle reads each block.</sub></td>
-  </tr>
-</table>
-
-### Human anatomy and biomechanics
 
 <table>
   <tr>
@@ -121,9 +98,9 @@ Three kinds of figure. All three share one kit, one camera and one set of craft 
 
 | Kind | What it is | Example |
 |---|---|---|
-| **SVG** | The core. Solid isometric parts with four-tone shading, painted back to front, in a card with a live readout and eased motion. It ships as a standalone HTML page, a lone `.svg` file with its styles embedded, or React/Next.js components. | `dial-indicator`, `desk-computer`, `arcade-cabinet`, `test-rig` |
-| **SVG + WebGL** | For what lines can't draw: fire, exhaust, water, caustics, lamp light, glow, steam. The shader runs in a canvas between a back and a front SVG, in the figure's own isometric camera, so it sits inside the drawing. The SVG still reads without WebGL. | `raptor-engine`, `ripple-tank` |
-| **3D** <sup>beta</sup> | Parts that turn in true 3D: a dial or turntable that spins, fingers that flex, a piece that breaks off and falls. The moving parts are re-projected and re-shaded by the kit's own rules every frame; the rest of the figure stays static art. | `turning-dial` |
+| **SVG** | The core. Solid isometric parts with four-tone shading, painted back to front, in a card with a live readout and eased motion. It ships as a standalone HTML page, a lone `.svg` file with its styles embedded, or React/Next.js components. | all six examples |
+| **SVG + WebGL** | For what lines can't draw: fire, exhaust, water, caustics, lamp light, glow, steam. The shader runs in a canvas between a back and a front SVG, in the figure's own isometric camera, so it sits inside the drawing. The SVG still reads without WebGL. | upstream `raptor-engine`, `ripple-tank` |
+| **3D** <sup>beta</sup> | Parts that turn in true 3D: a dial or turntable that spins, fingers that flex, a piece that breaks off and falls. The moving parts are re-projected and re-shaded by the kit's own rules every frame; the rest of the figure stays static art. | upstream `turning-dial` |
 
 Each figure is light or dark. Light is the theme the skill designs for first, shaders included.
 
@@ -225,30 +202,30 @@ Starting Codex with `--sandbox danger-full-access` also works, but it lifts ever
 Type `/anatomy` (in Codex, `$anatomy`) and say what the figure should explain:
 
 ```text
-/anatomy explain how a token bucket rate limiter works, interactive
+/anatomy explain why running loads the Achilles tendon more than walking, interactive
 ```
 
 You don't have to name the skill. Claude also loads it when you ask for an isometric illustration, an explanatory figure for docs, a blog post or a landing page, or an interactive explainer. Antigravity, OpenCode, Codex and MiniMax Code do the same.
 
 <details>
-<summary><b>More prompts</b>, from the skill's <a href="evals/evals.json">evals</a></summary>
+<summary><b>More prompts</b></summary>
 
 <br>
 
 ```text
-/anatomy a figure for our Next.js docs on database connection pooling: a pool of 10 connections, requests borrow one and give it back, and when all 10 are busy new requests wait in a queue. A React component plus a static HTML preview, dark theme.
+/anatomy the shoulder's rotator cuff as a force couple with the deltoid during arm abduction from 0 to 150°, with scapulohumeral rhythm 2:1. Standalone HTML, light theme.
 ```
 
 ```text
-/anatomy an isometric SVG explaining how a CDN edge cache works, cache hit vs miss, TTL of 60 s, for a dark landing page. Just the SVG file and a PNG preview.
+/anatomy a running stride versus a walking stride on the same force-plate treadmill: double support vanishes, a flight phase appears, and the vertical force goes from a double hump to one 2.5 BW impact peak. Dark theme.
 ```
 
 ```text
-/anatomy a Bunsen burner on a lab bench: opening the air collar turns the lazy yellow flame into a roaring blue cone. WebGL for the flame, one HTML file, dark theme.
+/anatomy the spine's lumbar discs under load: lifting 20 kg with a bent back versus a squat, L5/S1 compression from the erector spinae moment arm of about 5 cm. One HTML file, light theme.
 ```
 
 ```text
-/anatomy a heat-exchanger espresso machine with the side panel off: boiler, heat-exchanger tube, group head, pump, steam wand and gauge. Show the water flowing when you pull a shot. Standalone HTML, light theme.
+/anatomy the windlass mechanism of the plantar fascia: dorsiflexing the big toe raises the arch and locks the foot for push-off. A React component plus a static HTML preview.
 ```
 
 </details>
@@ -256,27 +233,14 @@ You don't have to name the skill. Claude also loads it when you ask for an isome
 Three habits get the best figures:
 
 1. **Name the idea, not the drawing.** Say what it should explain and give the real numbers (sizes, counts, rates, thresholds). Anatomy invents the object; that is most of the work, and it does it better than a description of boxes and arrows.
-2. **Or name the object.** If you already know the machine you want (an espresso machine, a Bunsen burner, a lock), say so, and say what should move.
+2. **Or name the object.** If you already know the rig you want (a force plate, a pressure mat, an isokinetic dynamometer), say so, and say what should move.
 3. **Say where it will live.** A standalone HTML page, a lone SVG file, or a React/Next.js component; light or dark. The build differs for each.
 
 A figure arrives as source you own: a Node build script and the page it writes, or, for React, geometry modules, a server component for the static art and one client component for the motion. The kit comes with it.
 
 ## Examples
 
-Each framework-free example has a Node build script that writes standalone pages next to itself. Add `--light` for the light theme.
-
-| Example | What it shows | Build |
-|---|---|---|
-| [`dial-indicator`](examples/dial-indicator) | A dial gauge on a stand over a carriage of gauge blocks. The smallest example, about 300 lines. | `node examples/dial-indicator/build.mjs` |
-| [`desk-computer`](examples/desk-computer) | A 1984-style desk computer with a keyboard you can type on. The typed line appears on a CRT drawn in the plane of the case front, and switching it off collapses the picture to a line and a dot. About 85 solids. | `node examples/desk-computer/build.mjs` |
-| [`arcade-cabinet`](examples/arcade-cabinet) | An upright arcade cabinet with its side panel off. Drop a quarter: it rolls down the coin chute past the coin-switch wire into the cash box, a pulse runs along the cable to the board, and the CRT warms up into an attract mode drawn in the plane of the tilted monitor. About 240 solids and 15 cables. | `node examples/arcade-cabinet/build.mjs` |
-| [`raptor-engine`](examples/raptor-engine) | A Raptor 2 engine in a test stand. It comes apart into 11 assemblies, and a WebGL plume, shock, splash and steam render between the back and front SVG. The reference for dense pipework, smooth shading, fades and the audit. The build takes a few minutes. | `node examples/raptor-engine/build.mjs` |
-| [`ripple-tank`](examples/ripple-tank) | A school ripple tank on tall legs over a paper screen, seen from 44° up. Two WebGL layers are registered to the isometric planes and driven by a pure model in `model.mjs`. | `node examples/ripple-tank/build.mjs` |
-| [`test-rig`](examples/test-rig) | A production figure from a React/Next.js site: a glass button on a spring-mounted carriage, a finger probe on a rail, and a dial gauge reading the lean. 53 solids. No build script: copy it into a React app. | none |
-| [`spot-plate`](examples/spot-plate) | A second figure from the same site: six pairs of glass drops on a spot plate that run together into one piece of glass as a fan of feeler blades opens. Each pair is drawn from one distance field. No build script: copy it into a React app. | none |
-| [`turning-dial`](examples/turning-dial) | The 3D mode: a combination dial that turns in true 3D with a small robot hand on it, a three-hinge finger that lifts, and a pod that breaks off as a free body. `stress.mjs` is a 380-part hand in a cluttered workshop, used to measure performance. | `node examples/turning-dial/build.mjs` |
-
-The human anatomy and biomechanics examples follow the same pattern. Each keeps its pure model in `model.mjs`, and the page redraws the moving bones from the same module the build uses.
+Each example has a Node build script that writes standalone pages next to itself. Add `--light` for the light theme. Each keeps its pure model in `model.mjs`, and the page redraws the moving bones from the same module the build uses.
 
 | Example | What it shows | Build |
 |---|---|---|
@@ -289,7 +253,7 @@ The human anatomy and biomechanics examples follow the same pattern. Each keeps 
 
 The models use typical textbook values (Winter, Perry, Pauwels and published moment-arm curves), not one subject's data. They are for teaching, not clinical use.
 
-`node examples/raptor-engine/build.mjs --audit`, `node examples/arcade-cabinet/build.mjs --audit` and `node examples/turning-dial/build.mjs --light --audit` also run the geometry audit. The 3D audit is slow; see [`references/3d.md`](references/3d.md).
+For the geometry audit (`--audit`) and the 3D orbit audit, see [`references/verify.md`](references/verify.md) and [`references/3d.md`](references/3d.md).
 
 ## How it works
 
@@ -330,7 +294,8 @@ anatomy/
 │   ├── inline-kit.mjs        the kit as source, to inline into a standalone page
 │   ├── turn-check.mjs        3D checks in the browser (with turn-fidelity.mjs)
 │   └── turn-bench.mjs        3D timing in Node
-├── examples/                 fourteen complete figures, built pages committed
+├── examples/                 six biomechanics figures, built pages committed
+├── tests/fixtures/           reference images and a built 3D page for the regression tests
 ├── evals/evals.json          test prompts and what a good answer contains
 └── .github/                  issue forms, PR template, CI, README images
 ```
@@ -344,21 +309,21 @@ anatomy/
 | **[Claude Code](https://code.claude.com/docs/en/overview)**, or [Antigravity](https://antigravity.google), [OpenCode](https://opencode.ai/docs/skills/), [Codex](https://developers.openai.com/codex/skills) or [MiniMax Code](https://github.com/MiniMax-AI/minimax-code) | everything | The skill is written for Claude Code and follows the open Agent Skills format, so Antigravity, OpenCode, Codex and MiniMax Code load it too. In Codex, the browser checks start Chrome; if its sandbox blocks that, allow it for those commands. |
 | **Node.js 20.10+** | builds, kit, checks | Built-in modules only: nothing to `npm install`. The examples were rebuilt byte for byte on Node 20.19 and 22.11. On Node 20 the browser scripts restart themselves with `--experimental-websocket`. |
 | **Chrome or Chromium** | the checks | `capture.mjs`, `drive.mjs`, `lines.mjs` and `turn-check.mjs` look in the usual places on macOS, Linux and Windows and in Playwright's cache. Set `CHROME_PATH` for any other binary. They run it headless with WebGL on. |
-| **React 18+** | React output only | `kit/react/`, `examples/test-rig/` and `examples/spot-plate/`. |
+| **React 18+** | React output only | `kit/react/`. See the upstream `test-rig` and `spot-plate` examples. |
 
 ## Limits
 
 - **It is not a chart library.** There are no axes, series or data plots. Numbers appear as a live readout driven by a model, and as the true sizes and counts of the parts.
-- **It draws machines, instruments, tools and furniture,** and in this fork, skeletal anatomy models mounted on lab instruments. It does not draw realistic people, skin or exact maps. The bones are turned and prism solids, close to a teaching model rather than true anatomical surfaces. An idea that has no mechanism to build will come out weaker.
-- **It is slow on purpose.** A figure takes a long session: the parts list, the geometry, the audit, and close-ups of every joint in both themes. The Raptor's build takes a few minutes, and a full 3D orbit audit takes 15 to 20 minutes for 30 parts.
+- **It draws skeletal anatomy models mounted on lab instruments,** as well as machines, instruments and tools. It does not draw realistic people, skin or exact maps. The bones are turned and prism solids, close to a teaching model rather than true anatomical surfaces. An idea that has no mechanism to build will come out weaker.
+- **It is slow on purpose.** A figure takes a long session: the parts list, the geometry, the audit, and close-ups of every joint in both themes. Each biomechanics build takes seconds, and a full 3D orbit audit takes 15 to 20 minutes for 30 parts.
 - **Shaders need WebGL.** Without it the SVG still reads, and under reduced motion every figure goes still.
 
 > [!NOTE]
-> **The 3D mode is beta.** It is proved on its example and one test figure, not yet on a production figure. A small 3D figure runs at 60 fps; the 380-part stress hand measured about 20 fps at 1440 px wide and 13 to 15 fps on a throttled phone profile, on a heavily loaded machine.
+> **The 3D mode is beta.** It is proved on the upstream `turning-dial` example and one test figure, not yet on a production figure. A small 3D figure runs at 60 fps; the 380-part stress hand measured about 20 fps at 1440 px wide and 13 to 15 fps on a throttled phone profile, on a heavily loaded machine.
 
 ## Share a figure
 
-Made something good? Ask your agent to *"publish this figure to the Anatomy community gallery"*. It asks for a title and your GitHub name, shows what it will send, and after your yes opens a pull request on [anatomy-community](https://github.com/wheresryan22/anatomy-community) for you: no git, no forking by hand. Or run `scripts/publish.mjs --submit` yourself. Without a terminal, use the gallery's **Submit a figure** form with a GitHub Gist.
+Made something good? Ask your agent to *"publish this figure to the Anatomy community gallery"* (the upstream project's gallery). It asks for a title and your GitHub name, shows what it will send, and after your yes opens a pull request on [anatomy-community](https://github.com/wheresryan22/anatomy-community) for you: no git, no forking by hand. Or run `scripts/publish.mjs --submit` yourself. Without a terminal, use the gallery's **Submit a figure** form with a GitHub Gist.
 
 ## Contributing
 
