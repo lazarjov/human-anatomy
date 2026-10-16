@@ -8,13 +8,13 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square" alt="MIT license"></a>
   <a href="#requirements"><img src="https://img.shields.io/badge/node-%E2%89%A5%2020.10-1b1b19?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node 20.10 or later"></a>
   <a href="#requirements"><img src="https://img.shields.io/badge/dependencies-0-1b1b19?style=flat-square" alt="No dependencies"></a>
-  <a href="https://github.com/wheresryan22/anatomy/actions/workflows/ci.yml"><img src="https://github.com/wheresryan22/anatomy/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/lazarjov/human-anatomy/actions/workflows/ci.yml"><img src="https://github.com/lazarjov/human-anatomy/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </p>
 
 <p align="center">
   <a href="https://skills.wheresryan.sh/anatomy"><img src="https://img.shields.io/badge/Website-skills.wheresryan.sh%2Fanatomy-1b1b19?style=for-the-badge" alt="Website: skills.wheresryan.sh/anatomy"></a>
   &nbsp;
-  <a href="https://github.com/wheresryan22/anatomy/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/Download-ZIP-1b1b19?style=for-the-badge&logo=github&logoColor=white" alt="Download ZIP"></a>
+  <a href="https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/Download-ZIP-1b1b19?style=for-the-badge&logo=github&logoColor=white" alt="Download ZIP"></a>
   &nbsp;
   <a href="#install"><img src="https://img.shields.io/badge/Install-npx_skills_add-d7d7d0?style=for-the-badge&labelColor=1b1b19&logo=npm&logoColor=white" alt="Install with npx"></a>
 </p>
@@ -42,10 +42,13 @@ Ask Claude for a figure that explains a technical idea, and Anatomy has it inven
 
 Then Claude builds that thing out of dozens of small, solid, shaded parts, puts it in a framed card with a title, a hint and a live readout, makes it move calmly under the pointer and the keyboard, and checks its own work by zooming in on every joint. Every number the figure shows comes from the same small model that moves its parts.
 
+> [!NOTE]
+> **This fork adds human anatomy and biomechanics.** [`lazarjov/human-anatomy`](https://github.com/lazarjov/human-anatomy) is a fork of [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) with six new examples: gait, foot pronation, a countermovement jump, the knee extensor mechanism, the ankle as a lever and the hip in single-leg stance. Each one is a skeletal model on a lab instrument, such as a force plate, a pressure mat, a load cell or a goniometer, and every number it shows comes from a small biomechanics model. See [Human anatomy and biomechanics](#human-anatomy-and-biomechanics).
+
 ## Quick start
 
 ```sh
-npx skills add wheresryan22/anatomy -g
+npx skills add lazarjov/human-anatomy -g
 ```
 
 The CLI asks which agents to set up (Claude Code, Antigravity, OpenCode, Codex, MiniMax Code). To skip the question, add `-a claude-code`, `-a antigravity`, `-a opencode`, `-a codex`, or `-a minimax-code`.
@@ -81,6 +84,35 @@ That's it. No API keys and nothing to `npm install`: the kit uses only Node's bu
   </tr>
 </table>
 
+### Human anatomy and biomechanics
+
+<table>
+  <tr>
+    <td width="50%"><img src=".github/assets/gait-cycle.webp" alt="An articulated leg skeleton hangs from a carriage on a gantry and walks on a treadmill with a force plate under the belt. A dial on a bench box reads the vertical ground reaction force."></td>
+    <td width="50%"><img src=".github/assets/foot-pronation.webp" alt="A skeletal left foot stands on a plantar pressure mat. A heel pointer reads the rearfoot angle on an arc, a slider marks navicular height, and a tablet shows the pressure map."></td>
+  </tr>
+  <tr>
+    <td><sub><b>gait-cycle</b>: one stride in Perry's eight phases. Hip, knee and ankle follow typical sagittal curves, the hip rises and falls, and the dial reads the double-hump ground force (1.15 / 0.79 / 1.11 × BW).</sub></td>
+    <td><sub><b>foot-pronation</b>: evert the heel from −6° to +12°. The arch drops (navicular drop past 10 mm when overpronated), the tibia turns inward, and plantar pressure moves to the medial arch and hallux.</sub></td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/countermovement-jump.webp" alt="A skeletal lower body with a 75 kg trunk mass on a guide column squats on a force plate. An amplifier screen draws the force trace, and a ruler tracks the centre of mass."></td>
+    <td><img src=".github/assets/knee-joint.webp" alt="A knee on a knee-extension bench: the femur is clamped in a vise, the tibia and fibula hinge at the condyles, tendons run over the patella to a load cell, and a weight hangs from the ankle."></td>
+  </tr>
+  <tr>
+    <td><sub><b>countermovement-jump</b>: impulse–momentum on a force plate. A 31 cm dip, a 2.6 BW push and takeoff at 2.60 m/s give a 34.5 cm jump with 530 ms of flight, then a 3.7 BW landing.</sub></td>
+    <td><sub><b>knee-joint</b>: the quadriceps extensor mechanism. Flex from 0 to 90° and the moment-arm model gives quadriceps force and patellofemoral compression, which peaks near 45°.</sub></td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/calf-raise.webp" alt="A skeletal lower leg and foot under a 70 kg mass rise onto the ball of the foot. The Achilles tendon runs through an inline load cell to a dial, and a gauge measures heel height."></td>
+    <td><img src=".github/assets/hip-abductors.webp" alt="A pelvis balanced on one femoral head on a stand. The lumbar spine carries a weight block, the gluteus medius pulls through a load cell, and a dial reads hip joint force."></td>
+  </tr>
+  <tr>
+    <td><sub><b>calf-raise</b>: the ankle as a second-class lever. The Achilles tendon pulls 2.8 × BW at heel-off and 1.7 × BW at 30°, as the forefoot lever shortens.</sub></td>
+    <td><sub><b>hip-abductors</b>: Pauwels' single-leg stance. The hip carries 2.55 × BW; lean the trunk 10° over the stance hip and it falls to 1.8 × BW.</sub></td>
+  </tr>
+</table>
+
 Every screenshot is the light theme of a page in [`examples/`](examples), captured with the skill's own [`scripts/capture.mjs`](scripts/capture.mjs) and [`scripts/drive.mjs`](scripts/drive.mjs). The built pages are committed: open any `.html` in `examples/` to try it.
 
 ## What it makes
@@ -101,18 +133,18 @@ Anatomy is a standard [Agent Skill](https://agentskills.io): a folder with a `SK
 
 | | Command | Installs to |
 |---|---|---|
-| **skills CLI**, for you (Claude Code) | `npx skills add wheresryan22/anatomy -g -a claude-code` | `~/.claude/skills/anatomy` |
-| **skills CLI**, for you (Antigravity) | `npx skills add wheresryan22/anatomy -g -a antigravity` | `~/.gemini/antigravity/skills/anatomy` |
-| **skills CLI**, for you (OpenCode) | `npx skills add wheresryan22/anatomy -g -a opencode` | `~/.config/opencode/skills/anatomy` |
-| **skills CLI**, for you (Codex) | `npx skills add wheresryan22/anatomy -g -a codex` | `~/.agents/skills/anatomy` |
-| **skills CLI**, for you (MiniMax Code) | `npx skills add wheresryan22/anatomy -g -a minimax-code` | `~/.minimax/skills/anatomy` |
-| **skills CLI**, for one project | `npx skills add wheresryan22/anatomy` | `.claude/skills/anatomy` for Claude Code, `.agents/skills/anatomy` for Antigravity, OpenCode and Codex, `.minimax/skills/anatomy` for MiniMax Code |
-| **git**, for you (Claude Code) | `git clone https://github.com/wheresryan22/anatomy.git ~/.claude/skills/anatomy` | `~/.claude/skills/anatomy` |
-| **git**, for you (Antigravity) | `git clone https://github.com/wheresryan22/anatomy.git ~/.gemini/antigravity/skills/anatomy` | `~/.gemini/antigravity/skills/anatomy` |
-| **git**, for you (OpenCode) | `git clone https://github.com/wheresryan22/anatomy.git ~/.config/opencode/skills/anatomy` | `~/.config/opencode/skills/anatomy` |
-| **git**, for you (Codex) | `git clone https://github.com/wheresryan22/anatomy.git ~/.agents/skills/anatomy` | `~/.agents/skills/anatomy` |
-| **git**, for you (MiniMax Code) | `git clone https://github.com/wheresryan22/anatomy.git ~/.minimax/skills/anatomy` | `~/.minimax/skills/anatomy` |
-| **git**, for one project | `git clone https://github.com/wheresryan22/anatomy.git .claude/skills/anatomy` | `.claude/skills/anatomy` (Claude Code and OpenCode) or `.agents/skills/anatomy` (Antigravity, OpenCode, Codex and MiniMax Code) |
+| **skills CLI**, for you (Claude Code) | `npx skills add lazarjov/human-anatomy -g -a claude-code` | `~/.claude/skills/anatomy` |
+| **skills CLI**, for you (Antigravity) | `npx skills add lazarjov/human-anatomy -g -a antigravity` | `~/.gemini/antigravity/skills/anatomy` |
+| **skills CLI**, for you (OpenCode) | `npx skills add lazarjov/human-anatomy -g -a opencode` | `~/.config/opencode/skills/anatomy` |
+| **skills CLI**, for you (Codex) | `npx skills add lazarjov/human-anatomy -g -a codex` | `~/.agents/skills/anatomy` |
+| **skills CLI**, for you (MiniMax Code) | `npx skills add lazarjov/human-anatomy -g -a minimax-code` | `~/.minimax/skills/anatomy` |
+| **skills CLI**, for one project | `npx skills add lazarjov/human-anatomy` | `.claude/skills/anatomy` for Claude Code, `.agents/skills/anatomy` for Antigravity, OpenCode and Codex, `.minimax/skills/anatomy` for MiniMax Code |
+| **git**, for you (Claude Code) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.claude/skills/anatomy` | `~/.claude/skills/anatomy` |
+| **git**, for you (Antigravity) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.gemini/antigravity/skills/anatomy` | `~/.gemini/antigravity/skills/anatomy` |
+| **git**, for you (OpenCode) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.config/opencode/skills/anatomy` | `~/.config/opencode/skills/anatomy` |
+| **git**, for you (Codex) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.agents/skills/anatomy` | `~/.agents/skills/anatomy` |
+| **git**, for you (MiniMax Code) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.minimax/skills/anatomy` | `~/.minimax/skills/anatomy` |
+| **git**, for one project | `git clone https://github.com/lazarjov/human-anatomy.git .claude/skills/anatomy` | `.claude/skills/anatomy` (Claude Code and OpenCode) or `.agents/skills/anatomy` (Antigravity, OpenCode, Codex and MiniMax Code) |
 | **Download**, no git | see below | any of the folders above |
 
 <details>
@@ -140,22 +172,22 @@ Clone the repository into one of the skill folders, so that `SKILL.md` ends up a
 
 <br>
 
-[Download the ZIP](https://github.com/wheresryan22/anatomy/archive/refs/heads/main.zip), unpack it, rename the folder from `anatomy-main` to `anatomy`, and move it into `~/.claude/skills/` (Claude Code), `~/.gemini/antigravity/skills/` (Antigravity), `~/.config/opencode/skills/` (OpenCode), `~/.agents/skills/` (Codex) or `~/.minimax/skills/` (MiniMax Code).
+[Download the ZIP](https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.zip), unpack it, rename the folder from `human-anatomy-main` to `anatomy`, and move it into `~/.claude/skills/` (Claude Code), `~/.gemini/antigravity/skills/` (Antigravity), `~/.config/opencode/skills/` (OpenCode), `~/.agents/skills/` (Codex) or `~/.minimax/skills/` (MiniMax Code).
 
 Or in one line on macOS or Linux:
 
 ```sh
-mkdir -p ~/.claude/skills/anatomy && curl -L https://github.com/wheresryan22/anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.claude/skills/anatomy
+mkdir -p ~/.claude/skills/anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.claude/skills/anatomy
 ```
 
 For Antigravity, OpenCode, Codex or MiniMax Code, put the same files in `~/.gemini/antigravity/skills/anatomy`, `~/.config/opencode/skills/anatomy`, `~/.agents/skills/anatomy` or `~/.minimax/skills/anatomy`:
 
 ```sh
-mkdir -p ~/.gemini/antigravity/skills/anatomy && curl -L https://github.com/wheresryan22/anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.gemini/antigravity/skills/anatomy
+mkdir -p ~/.gemini/antigravity/skills/anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.gemini/antigravity/skills/anatomy
 ```
 
 ```sh
-mkdir -p ~/.config/opencode/skills/anatomy && curl -L https://github.com/wheresryan22/anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.config/opencode/skills/anatomy
+mkdir -p ~/.config/opencode/skills/anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.config/opencode/skills/anatomy
 ```
 
 </details>
@@ -244,6 +276,19 @@ Each framework-free example has a Node build script that writes standalone pages
 | [`spot-plate`](examples/spot-plate) | A second figure from the same site: six pairs of glass drops on a spot plate that run together into one piece of glass as a fan of feeler blades opens. Each pair is drawn from one distance field. No build script: copy it into a React app. | none |
 | [`turning-dial`](examples/turning-dial) | The 3D mode: a combination dial that turns in true 3D with a small robot hand on it, a three-hinge finger that lifts, and a pod that breaks off as a free body. `stress.mjs` is a 380-part hand in a cluttered workshop, used to measure performance. | `node examples/turning-dial/build.mjs` |
 
+The human anatomy and biomechanics examples follow the same pattern. Each keeps its pure model in `model.mjs`, and the page redraws the moving bones from the same module the build uses.
+
+| Example | What it shows | Build |
+|---|---|---|
+| [`gait-cycle`](examples/gait-cycle) | An articulated leg skeleton (femur, patella, tibia, fibula, tarsals, five rays) pinned at the hip to a gantry carriage walks one stride on a force-plate treadmill. It shows Perry's eight phases, typical hip, knee and ankle curves, the hip rising and falling over each step, and a dial reading the double-hump vertical ground force in × body weight. About 85 solids. | `node examples/gait-cycle/build.mjs` |
+| [`foot-pronation`](examples/foot-pronation) | A skeletal left foot on a plantar pressure mat. Evert the heel from −6° to +12°: a heel pointer reads the rearfoot angle on an arc, the arch lowers (navicular drop on a ruler slider), the tibia turns inward on its collar, and the pressure map on the mat and a tablet shifts to the inner arch. About 107 solids and 336 sensor cells. | `node examples/foot-pronation/build.mjs` |
+| [`countermovement-jump`](examples/countermovement-jump) | A skeletal lower-limb model with a 75 kg trunk mass on a guide column jumps from a force plate. It dips 31 cm, pushes to a 2.6 BW peak and takes off at 2.60 m/s. The amplifier screen traces the force, and the ruler tracks the centre of mass through 34.5 cm, 530 ms of flight and a 3.7 BW landing. The joint angles are solved from the centre-of-mass height. | `node examples/countermovement-jump/build.mjs` |
+| [`knee-joint`](examples/knee-joint) | A left knee on a seated knee-extension bench: the femur in a vise, the tibia and fibula hinged at the condyles, menisci, cruciate and collateral ligaments, and a patella riding the trochlea between the quadriceps and patellar tendons. A load cell sits on the quadriceps cable, with a goniometer and a 10 kg weight. Flex it from 0 to 90° for quadriceps and patellofemoral force. About 75 solids. | `node examples/knee-joint/build.mjs` |
+| [`calf-raise`](examples/calf-raise) | A heel raise as a second-class lever. A skeletal lower leg and foot under 70 kg rolls about the ball of the foot while the Achilles tendon pulls through an inline load cell, read on a bench dial: 2.8 × BW at heel-off, 1.7 × BW at 30° and 9.3 cm. About 76 solids. | `node examples/calf-raise/build.mjs` |
+| [`hip-abductors`](examples/hip-abductors) | A pelvis balanced on one femoral head in single-leg stance. The lumbar spine carries 5/6 of body weight 10.5 cm medial to the hip, the gluteus medius pulls through a load cell 5 cm lateral, and a load pin reads the hip joint force (2.55 × BW). Lean the trunk 10° over the stance hip and it falls to 1.8 × BW. About 86 solids. | `node examples/hip-abductors/build.mjs` |
+
+The models use typical textbook values (Winter, Perry, Pauwels and published moment-arm curves), not one subject's data. They are for teaching, not clinical use.
+
 `node examples/raptor-engine/build.mjs --audit`, `node examples/arcade-cabinet/build.mjs --audit` and `node examples/turning-dial/build.mjs --light --audit` also run the geometry audit. The 3D audit is slow; see [`references/3d.md`](references/3d.md).
 
 ## How it works
@@ -285,7 +330,7 @@ anatomy/
 │   ├── inline-kit.mjs        the kit as source, to inline into a standalone page
 │   ├── turn-check.mjs        3D checks in the browser (with turn-fidelity.mjs)
 │   └── turn-bench.mjs        3D timing in Node
-├── examples/                 eight complete figures, built pages committed
+├── examples/                 fourteen complete figures, built pages committed
 ├── evals/evals.json          test prompts and what a good answer contains
 └── .github/                  issue forms, PR template, CI, README images
 ```
@@ -304,7 +349,7 @@ anatomy/
 ## Limits
 
 - **It is not a chart library.** There are no axes, series or data plots. Numbers appear as a live readout driven by a model, and as the true sizes and counts of the parts.
-- **It draws machines, instruments, tools and furniture.** Not people or exact maps. An idea that has no mechanism to build will come out weaker.
+- **It draws machines, instruments, tools and furniture,** and in this fork, skeletal anatomy models mounted on lab instruments. It does not draw realistic people, skin or exact maps. The bones are turned and prism solids, close to a teaching model rather than true anatomical surfaces. An idea that has no mechanism to build will come out weaker.
 - **It is slow on purpose.** A figure takes a long session: the parts list, the geometry, the audit, and close-ups of every joint in both themes. The Raptor's build takes a few minutes, and a full 3D orbit audit takes 15 to 20 minutes for 30 parts.
 - **Shaders need WebGL.** Without it the SVG still reads, and under reduced motion every figure goes still.
 

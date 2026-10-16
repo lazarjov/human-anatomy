@@ -60,6 +60,18 @@ node examples/turning-dial/build.mjs
 node examples/turning-dial/build.mjs --light
 node examples/turning-dial/build.mjs --light --verify
 node examples/turning-dial/stress.mjs --light
+node examples/gait-cycle/build.mjs
+node examples/gait-cycle/build.mjs --light
+node examples/foot-pronation/build.mjs
+node examples/foot-pronation/build.mjs --light
+node examples/countermovement-jump/build.mjs
+node examples/countermovement-jump/build.mjs --light
+node examples/knee-joint/build.mjs
+node examples/knee-joint/build.mjs --light
+node examples/calf-raise/build.mjs
+node examples/calf-raise/build.mjs --light
+node examples/hip-abductors/build.mjs
+node examples/hip-abductors/build.mjs --light
 ```
 
 The Raptor builds take a few minutes each; the rest take seconds. `examples/test-rig/` and `examples/spot-plate/` are React components with no build script.

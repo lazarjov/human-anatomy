@@ -64,6 +64,36 @@ jobs:
           node examples/raptor-engine/build.mjs
           node examples/raptor-engine/build.mjs --light
 
+      - name: Gait cycle
+        run: |
+          node examples/gait-cycle/build.mjs
+          node examples/gait-cycle/build.mjs --light
+
+      - name: Foot pronation
+        run: |
+          node examples/foot-pronation/build.mjs
+          node examples/foot-pronation/build.mjs --light
+
+      - name: Countermovement jump
+        run: |
+          node examples/countermovement-jump/build.mjs
+          node examples/countermovement-jump/build.mjs --light
+
+      - name: Knee joint
+        run: |
+          node examples/knee-joint/build.mjs
+          node examples/knee-joint/build.mjs --light
+
+      - name: Calf raise
+        run: |
+          node examples/calf-raise/build.mjs
+          node examples/calf-raise/build.mjs --light
+
+      - name: Hip abductors
+        run: |
+          node examples/hip-abductors/build.mjs
+          node examples/hip-abductors/build.mjs --light
+
       - name: Committed pages are unchanged
         run: |
           git status --short
