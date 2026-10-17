@@ -1,13 +1,10 @@
 const DATA = __DATA__;
 const P = DATA.P;
-const knee = makeKnee({ solidSvg, lineSvg, dotsSvg, iso, pathOf }, GL, TB, P, MD);
+const knee = makeKnee({ solidSvg, lineSvg, dotsSvg, fadeLineSvg, iso, pathOf }, GL, TB, P, MD);
 const stage = document.querySelector(".iso-stage");
 const svg = stage.querySelector("svg");
 const kneeG = svg.querySelector('[data-part="knee"]');
-const gonio = svg.querySelector('[data-part="gonio"]');
-const weightG = svg.querySelector('[data-part="weight"]');
-const cord = svg.querySelector('[data-part="cord"]');
-const halo = svg.querySelector('[data-part="halo"]');
+const skinG = svg.querySelector('[data-part="skin"]');
 const readout = document.querySelector("[data-readout]");
 const still = matchMedia("(prefers-reduced-motion: reduce)");
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -18,13 +15,8 @@ const say = (l) => Math.round(l.angle) + "° flexion · quad " + Math.round(l.qu
 function draw(force) {
   if (!force && Math.abs(angle - drawn) < 0.08) return;
   drawn = angle;
+  skinG.innerHTML = knee.skin(angle);
   kneeG.innerHTML = knee.knee(angle);
-  gonio.innerHTML = knee.goniometer(angle);
-  const e = MD.eyeOf(angle);
-  weightG.setAttribute("transform", translateAlong(P, [e[0] - DATA.restEye[0], 0, e[2] - DATA.restEye[2]]));
-  cord.setAttribute("d", pathOf([iso([e[0], 0, e[2] - 1.6], P), iso([e[0], 0, e[2] - MD.CORD + 1.3], P)]));
-  halo.setAttribute("d", haloOf({ x: e[0] - 12, y: -12, w: 24, d: 24, r: 12 }, 0, 0.1, P));
-  halo.setAttribute("opacity", clamp((DATA.HALO_END - e[0]) / 30, 0, 1).toFixed(2));
   const text = say(MD.loads(angle));
   if (readout.textContent !== text) readout.textContent = text;
   stage.setAttribute("aria-valuenow", String(Math.round(angle)));

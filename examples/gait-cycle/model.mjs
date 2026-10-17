@@ -22,6 +22,46 @@ export const FORCE = [[0, 0], [0.03, 0.55], [0.08, 1.02], [0.13, 1.15], [0.2, 0.
 
 const wrap = (t) => ((t % 1) + 1) % 1;
 
+export const MUSCLES = [
+  { id: "tibialisAnterior", name: "tibialis anterior", bursts: [[-0.06, 0.03, 0.15, 0.9], [0.56, 0.7, 1, 0.45]] },
+  { id: "vastusLateralis", name: "vastus lateralis", bursts: [[-0.08, 0.06, 0.2, 0.85]] },
+  { id: "vastusMedialis", name: "vastus medialis", bursts: [[-0.08, 0.06, 0.2, 0.8]] },
+  { id: "rectusFemoris", name: "rectus femoris", bursts: [[-0.05, 0.05, 0.14, 0.4], [0.48, 0.58, 0.66, 0.5]] },
+  { id: "gluteusMaximus", name: "gluteus maximus", bursts: [[-0.1, 0.03, 0.16, 0.7]] },
+  { id: "gluteusMedius", name: "gluteus medius", bursts: [[-0.06, 0.1, 0.34, 0.8]] },
+  { id: "bicepsFemoris", name: "biceps femoris", bursts: [[0.76, 0.92, 1.06, 0.85]] },
+  { id: "semitendinosus", name: "semitendinosus", bursts: [[0.76, 0.92, 1.06, 0.8]] },
+  { id: "gastrocnemius", name: "gastrocnemius", bursts: [[0.1, 0.42, 0.54, 0.9]] },
+  { id: "soleus", name: "soleus", bursts: [[0.07, 0.42, 0.54, 1]] },
+  { id: "fibularisLongus", name: "fibularis longus", bursts: [[0.14, 0.4, 0.52, 0.6]] },
+  { id: "iliopsoas", name: "iliopsoas", bursts: [[0.48, 0.6, 0.72, 0.75]] },
+];
+
+function burstAt([a, m, b, peak], x) {
+  for (const shift of [-1, 0, 1]) {
+    const y = x + shift;
+    if (y > a && y < b) {
+      const s = y < m ? (y - a) / (m - a) : (b - y) / (b - m);
+      const e = Math.sin((Math.PI / 2) * s);
+      return peak * e * e;
+    }
+  }
+  return 0;
+}
+
+export function activationAt(t) {
+  const x = wrap(t);
+  const out = {};
+  for (const muscle of MUSCLES) out[muscle.id] = Math.min(1, muscle.bursts.reduce((sum, burst) => sum + burstAt(burst, x), 0));
+  return out;
+}
+
+export function leadingMuscle(act) {
+  let best = null;
+  for (const muscle of MUSCLES) if (!best || act[muscle.id] > act[best.id]) best = muscle;
+  return best && act[best.id] > 0.15 ? best.name : "none";
+}
+
 function periodic(keys, t) {
   const n = keys.length - 1;
   const x = wrap(t);
@@ -136,11 +176,5 @@ export const MEAN_HIP = (() => {
 
 export const poseAt = (t) => {
   const z = hipHeightAt(t);
-  return { t: wrap(t), ...chainAt(t, z), bob: z - MEAN_HIP, force: forceAt(t), phase: phaseAt(t), angles: anglesAt(t) };
+  return { t: wrap(t), ...chainAt(t, z), bob: z - MEAN_HIP, force: forceAt(t), phase: phaseAt(t), angles: anglesAt(t), act: activationAt(t) };
 };
-
-export const BELT = (() => {
-  const a = poseAt(0.14).A[0];
-  const b = poseAt(0.46).A[0];
-  return (a - b) / (0.32 * CYCLE_S);
-})();

@@ -1,43 +1,28 @@
 const D = __DATA__;
 const P = D.P;
-const kit = { solidSvg, lineSvg, iso, dotsSvg, wireSvg };
-const body = makeBody(kit, G, P, M);
+const kit = { solidSvg, lineSvg, iso, dotsSvg };
+const body = makeBody(kit, G, P, M, T, TB);
 const stage = document.querySelector(".iso-stage");
 const svg = stage.querySelector("svg");
 const part = (name) => svg.querySelector(`[data-part="${name}"]`);
-const far = part("far"), near = part("near"), trunk = part("trunk"), car = part("carriage"), post = part("post");
-const trace = part("trace"), cursor = part("cursor"), led = part("led");
+const far = part("far"), near = part("near"), trunk = part("trunk"), shadow = part("shadow");
 const readout = document.querySelector("[data-readout]");
 const still = matchMedia("(prefers-reduced-motion: reduce)");
-const f1 = (v) => Math.round(v * 10) / 10;
-const tracePoint = (t, bw) => {
-  const u = (t - D.TRACE_T[0]) / (D.TRACE_T[1] - D.TRACE_T[0]);
-  const x = D.SCREEN.x0 + 1.5 + u * (D.SCREEN.x1 - D.SCREEN.x0 - 3);
-  const z = D.SCREEN.z0 + 1.5 + (Math.min(bw, D.TRACE_MAX) / D.TRACE_MAX) * (D.SCREEN.z1 - D.SCREEN.z0 - 3);
-  return iso([x, D.AMP.y + D.AMP.d + 0.8, z], P);
-};
-const samples = [];
-for (let t = D.TRACE_T[0]; t <= D.TRACE_T[1] + 1e-9; t += 0.01) samples.push([t, tracePoint(t, M.stateAt(t).bw)]);
+const TRACE = [0.45, 3.25];
 const MARKS = [0, 0.7, 1.06, 1.19, M.TAKEOFF + 0.18, M.LAND + 0.06, 2.6];
-const postUp = (rise) => solidSvg(cylinder(D.POST[0], D.POST[1], D.POST_R, D.HIP0 + D.CAR_Z[1] + rise, D.POST_TOP - D.HIP0 - D.CAR_Z[1] - rise, P, 28), { tone: "mid", crease: "none" });
-let time = 0, target = 0, frame = 0, last = 0, visible = false, touring = !still.matches, scrubbing = false, idle = 0, lastText = "", lastPhase = "";
+let time = 0, target = 0, frame = 0, last = 0, visible = false, touring = !still.matches, idle = 0, lastText = "", lastPhase = "";
 function draw() {
   const st = M.stateAt(time);
-  const rise = st.s / M.UNIT;
   const pose = body.poseAt(st.s, st.contact);
-  far.innerHTML = body.legSvg(pose, -1);
-  near.innerHTML = body.legSvg(pose, 1);
-  trunk.setAttribute("transform", translateAlong(P, [pose.shift, 0, rise]));
-  car.setAttribute("transform", translateAlong(P, [0, 0, rise]));
-  post.innerHTML = postUp(rise);
-  const until = Math.min(Math.max(st.t, D.TRACE_T[0]), D.TRACE_T[1]);
-  const pts = samples.filter(([t]) => t <= until);
-  trace.setAttribute("d", pts.length > 1 ? pts.map(([, p], i) => (i ? "L" : "M") + f1(p[0]) + " " + f1(p[1])).join("") : "");
-  const c = tracePoint(until, st.t > D.TRACE_T[1] ? 1 : st.bw);
-  cursor.setAttribute("cx", f1(c[0]));
-  cursor.setAttribute("cy", f1(c[1]));
-  if (st.contact) led.removeAttribute("data-on");
-  else led.setAttribute("data-on", "");
+  const fig = body.figureAt(pose, M.activationAt(st.t));
+  far.innerHTML = fig.far;
+  trunk.innerHTML = fig.trunk;
+  near.innerHTML = fig.near;
+  const lift = Math.max(0, pose.lift);
+  const spread = 1 + lift / 160;
+  const o = D.SHADOW_ORIGIN;
+  shadow.setAttribute("transform", `translate(${o[0]} ${o[1]}) scale(${spread.toFixed(3)}) translate(${-o[0]} ${-o[1]})`);
+  shadow.style.opacity = (1 / (1 + lift / 22)).toFixed(3);
   const v = (st.v >= 0 ? "+" : "−") + Math.abs(st.v).toFixed(2) + " m/s";
   let text;
   if (st.phase === "flight") text = "flight · " + v + " · h " + (M.HEIGHT * 100).toFixed(1) + " cm · " + Math.round(M.FLIGHT * 1000) + " ms";
@@ -56,8 +41,7 @@ function tick(now) {
   if (touring) { time = (time + dt * D.RATE) % M.CYCLE; target = time; }
   else if (calm) time = target;
   else {
-    let gap = target - time;
-    time += gap * (1 - Math.exp(-dt / 0.18));
+    time += (target - time) * (1 - Math.exp(-dt / 0.18));
     if (Math.abs(target - time) < 0.0005) time = target;
   }
   draw();
@@ -73,7 +57,7 @@ stage.addEventListener("pointermove", (event) => {
   if (event.pointerType === "touch") return;
   const box = svg.getBoundingClientRect();
   const share = Math.min(1, Math.max(0, ((event.clientX - box.left) / box.width - 0.12) / 0.76));
-  steer(D.TRACE_T[0] + share * (D.TRACE_T[1] - D.TRACE_T[0]));
+  steer(TRACE[0] + share * (TRACE[1] - TRACE[0]));
 });
 stage.addEventListener("pointerleave", () => rest());
 stage.addEventListener("click", jump);

@@ -29,19 +29,19 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/foot-pronation.webp" width="640" alt="An isometric drawing of a skeletal left foot standing on a plantar pressure mat, overpronated: the heel everts, a heel pointer reads the angle on an arc, the arch has dropped, and the pressure cells under the inner arch are darkest. The card reads Fig 1, Subtalar pronation.">
+  <img src=".github/assets/foot-pronation.webp" width="640" alt="A pink anatomical model of a left foot and lower leg, overpronated: the foot bones capped in blue-white cartilage, the tibialis posterior deep red as it works to hold the dropping arch, peroneus and soleus on pearly tendons, the deltoid and spring ligaments, the tibial artery and nerve behind the ankle, all inside a translucent skin, with a soft contact print on the floor.">
 </p>
 
-<p align="center"><sub><code>examples/foot-pronation</code>, light theme, overpronated. Every bone, sensor cell and gauge is SVG, and the pressure map comes from the same model that moves the bones.</sub></p>
+<p align="center"><sub><code>examples/foot-pronation</code>, light theme, overpronated. Each tissue has its own colour, and each muscle deepens from rose to red as the model says it works harder.</sub></p>
 
 ---
 
-Ask Claude for a figure that explains how the body moves, and Anatomy has it invent a lab instrument whose working *is* the concept. Why the hip carries nearly three times body weight when you stand on one leg becomes a pelvis balanced on one femoral head, with the abductor muscle pulling through a load cell. How high you jump becomes a leg model on a force plate, whose force trace integrates to takeoff velocity and flight time.
+Ask Claude for a figure that explains how the body moves, and Anatomy builds it as a pink anatomical teaching model, the kind you would find on a lecturer's desk, that moves the way the body does. Why the hip carries nearly three times body weight when you stand on one leg becomes a pelvis balanced on one femoral head, with the gluteus medius reddening as it holds the pelvis level. How high you jump becomes a lower-body model whose glutes, quadriceps and calves fire from hip to ankle and fall quiet in flight.
 
-Then Claude builds that thing out of dozens of small, solid, shaded parts: bones as turned solids with steel pins at the joints, muscles and tendons that end on their real attachments, and the force plates, pressure mats, goniometers and dials that measure them. It puts the figure in a framed card with a title, a hint and a live readout, makes it move calmly under the pointer and the keyboard, and checks its own work by zooming in on every joint. Every number the figure shows comes from the same small biomechanics model that moves its parts.
+Claude builds the model out of dozens of small, solid, shaded tissues. Bones carry their real landmarks and cartilage caps. Muscles are fibred bellies on pearly tendons at their true origins and insertions. Ligaments, joint capsules, vessels and nerves sit where they belong, and a faint translucent skin outlines the body segment. Each tissue has its own colour from one shared palette (`kit/tissue.mjs`), and each muscle deepens from rose to red with its activation. Claude puts the model in a framed card with a title, a hint and a live readout, makes it move calmly under the pointer and the keyboard, and checks its own work by zooming in on every joint. Every number and every muscle's colour comes from the same small biomechanics model that moves the bones.
 
 > [!NOTE]
-> **This is a fork of [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) focused on human anatomy and biomechanics.** The kit, the craft rules and the checks are unchanged. The original machine examples (the Raptor engine, ripple tank, turning dial and others) are replaced here by six biomechanics examples: gait, foot pronation, a countermovement jump, the knee extensor mechanism, the ankle as a lever and the hip in single-leg stance. The guides in `references/` still cite the originals for advanced techniques (WebGL, React, the 3D mode); those live upstream.
+> **This is a fork of [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) focused on human anatomy and physiology.** The kit, the craft rules and the checks are the upstream ones, plus a tissue palette. The original machine examples (the Raptor engine, ripple tank, turning dial and others) are replaced here by six anatomical models: gait, foot pronation, a countermovement jump, the knee extensor mechanism, the ankle as a lever and the hip in single-leg stance. The guides in `references/` still cite the originals for advanced techniques (WebGL, React, the 3D mode); those live upstream.
 
 ## Quick start
 
@@ -65,28 +65,28 @@ That's it. No API keys and nothing to `npm install`: the kit uses only Node's bu
 
 <table>
   <tr>
-    <td width="50%"><img src=".github/assets/gait-cycle.webp" alt="An articulated leg skeleton hangs from a carriage on a gantry and walks on a treadmill with a force plate under the belt. A dial on a bench box reads the vertical ground reaction force."></td>
-    <td width="50%"><img src=".github/assets/foot-pronation.webp" alt="A skeletal left foot stands on a plantar pressure mat. A heel pointer reads the rearfoot angle on an arc, a slider marks navicular height, and a tablet shows the pressure map."></td>
+    <td width="50%"><img src=".github/assets/gait-cycle.webp" alt="A pink anatomical left leg mid-stride: pelvis, femur, tibia, fibula and foot bones capped in cartilage, with thirteen muscles on tendons in a translucent skin. The calf muscles are red in terminal stance, and a contact patch glows under the foot."></td>
+    <td width="50%"><img src=".github/assets/foot-pronation.webp" alt="A pink anatomical foot and lower leg overpronated: the arch has dropped, tibialis posterior is deep red, and the contact print sits on the inner side of the foot."></td>
   </tr>
   <tr>
-    <td><sub><b>gait-cycle</b>: one stride in Perry's eight phases. Hip, knee and ankle follow typical sagittal curves, the hip rises and falls, and the dial reads the double-hump ground force (1.15 / 0.79 / 1.11 × BW).</sub></td>
-    <td><sub><b>foot-pronation</b>: evert the heel from −6° to +12°. The arch drops (navicular drop past 10 mm when overpronated), the tibia turns inward, and plantar pressure moves to the medial arch and hallux.</sub></td>
+    <td><sub><b>gait-cycle</b>: one stride in Perry's eight phases. Thirteen muscles redden in typical EMG timing: tibialis anterior at heel strike, the vasti in loading, the calf in terminal stance, the hamstrings in terminal swing. The contact patch grows with the double-hump ground force.</sub></td>
+    <td><sub><b>foot-pronation</b>: evert the heel from −6° to +12°. The arch drops past 10 mm, the spring ligament and plantar fascia stretch, tibialis posterior reddens to 95% as it works to hold the arch, and the contact print moves medially.</sub></td>
   </tr>
   <tr>
-    <td><img src=".github/assets/countermovement-jump.webp" alt="A skeletal lower body with a 75 kg trunk mass on a guide column squats on a force plate. An amplifier screen draws the force trace, and a ruler tracks the centre of mass."></td>
-    <td><img src=".github/assets/knee-joint.webp" alt="A knee on a knee-extension bench: the femur is clamped in a vise, the tibia and fibula hinge at the condyles, tendons run over the patella to a load cell, and a weight hangs from the ankle."></td>
+    <td><img src=".github/assets/countermovement-jump.webp" alt="A pink anatomical lower body in a countermovement squat: pelvis, lumbar spine and both legs, the glutes and quadriceps red in propulsion, inside a translucent skin over a soft floor shadow."></td>
+    <td><img src=".github/assets/knee-joint.webp" alt="A large pink anatomical knee at 45°: cartilage-capped femoral condyles and patella, menisci, cruciate and collateral ligaments, and the quadriceps pulling through the patellar tendon, inside a translucent skin."></td>
   </tr>
   <tr>
-    <td><sub><b>countermovement-jump</b>: impulse–momentum on a force plate. A 31 cm dip, a 2.6 BW push and takeoff at 2.60 m/s give a 34.5 cm jump with 530 ms of flight, then a 3.7 BW landing.</sub></td>
-    <td><sub><b>knee-joint</b>: the quadriceps extensor mechanism. Flex from 0 to 90° and the moment-arm model gives quadriceps force and patellofemoral compression, which peaks near 45°.</sub></td>
+    <td><sub><b>countermovement-jump</b>: impulse–momentum. Braking loads the quadriceps eccentrically, propulsion fires the glutes, then the quadriceps, then the calves, and flight is quiet. Takeoff at 2.60 m/s gives a 34.5 cm jump with 530 ms in the air, then a 3.7 BW landing.</sub></td>
+    <td><sub><b>knee-joint</b>: the extensor mechanism. Flex from 0 to 90° against a 10 kg ankle weight. The quadriceps reddens with its force (859 N straight), and the patellar cartilage flushes with patellofemoral force, peaking at 665 N near 45°.</sub></td>
   </tr>
   <tr>
-    <td><img src=".github/assets/calf-raise.webp" alt="A skeletal lower leg and foot under a 70 kg mass rise onto the ball of the foot. The Achilles tendon runs through an inline load cell to a dial, and a gauge measures heel height."></td>
-    <td><img src=".github/assets/hip-abductors.webp" alt="A pelvis balanced on one femoral head on a stand. The lumbar spine carries a weight block, the gluteus medius pulls through a load cell, and a dial reads hip joint force."></td>
+    <td><img src=".github/assets/calf-raise.webp" alt="A pink anatomical lower leg and foot in a heel raise: both gastrocnemius heads and the soleus red as they pull the Achilles tendon on the heel bone, the foot rolling on the ball of the foot."></td>
+    <td><img src=".github/assets/hip-abductors.webp" alt="A pink anatomical pelvis, lumbar spine and stance femur in a translucent trunk-and-thigh skin. The gluteus medius fans red from the ilium to the greater trochanter, and a load patch glows on the femoral head."></td>
   </tr>
   <tr>
-    <td><sub><b>calf-raise</b>: the ankle as a second-class lever. The Achilles tendon pulls 2.8 × BW at heel-off and 1.7 × BW at 30°, as the forefoot lever shortens.</sub></td>
-    <td><sub><b>hip-abductors</b>: Pauwels' single-leg stance. The hip carries 2.55 × BW; lean the trunk 10° over the stance hip and it falls to 1.8 × BW.</sub></td>
+    <td><sub><b>calf-raise</b>: the ankle as a second-class lever. The triceps surae pulls 2.8 × BW through the Achilles tendon at heel-off and pales to 1.7 × BW at 30°, as the forefoot lever shortens.</sub></td>
+    <td><sub><b>hip-abductors</b>: Pauwels' single-leg stance. The gluteus medius carries 1.75 × BW and the hip 2.55 × BW. Lean the trunk 10° over the stance hip and both fall, to 1.0 and 1.8 × BW, as the muscle pales.</sub></td>
   </tr>
 </table>
 
@@ -217,7 +217,7 @@ You don't have to name the skill. Claude also loads it when you ask for an isome
 ```
 
 ```text
-/anatomy a running stride versus a walking stride on the same force-plate treadmill: double support vanishes, a flight phase appears, and the vertical force goes from a double hump to one 2.5 BW impact peak. Dark theme.
+/anatomy a running stride versus a walking stride: double support vanishes, a flight phase appears, the vertical force goes from a double hump to one 2.5 BW impact peak, and the calf fires earlier and harder. Dark theme.
 ```
 
 ```text
@@ -233,7 +233,7 @@ You don't have to name the skill. Claude also loads it when you ask for an isome
 Three habits get the best figures:
 
 1. **Name the idea, not the drawing.** Say what it should explain and give the real numbers (sizes, counts, rates, thresholds). Anatomy invents the object; that is most of the work, and it does it better than a description of boxes and arrows.
-2. **Or name the object.** If you already know the rig you want (a force plate, a pressure mat, an isokinetic dynamometer), say so, and say what should move.
+2. **Or name the anatomy.** If you know which bones, muscles and ligaments matter (the rotator cuff, the spring ligament, the iliotibial band), say so, and say what should move and which muscles should fire.
 3. **Say where it will live.** A standalone HTML page, a lone SVG file, or a React/Next.js component; light or dark. The build differs for each.
 
 A figure arrives as source you own: a Node build script and the page it writes, or, for React, geometry modules, a server component for the static art and one client component for the motion. The kit comes with it.
@@ -244,12 +244,12 @@ Each example has a Node build script that writes standalone pages next to itself
 
 | Example | What it shows | Build |
 |---|---|---|
-| [`gait-cycle`](examples/gait-cycle) | An articulated leg skeleton (femur, patella, tibia, fibula, tarsals, five rays) pinned at the hip to a gantry carriage walks one stride on a force-plate treadmill. It shows Perry's eight phases, typical hip, knee and ankle curves, the hip rising and falling over each step, and a dial reading the double-hump vertical ground force in × body weight. About 85 solids. | `node examples/gait-cycle/build.mjs` |
-| [`foot-pronation`](examples/foot-pronation) | A skeletal left foot on a plantar pressure mat. Evert the heel from −6° to +12°: a heel pointer reads the rearfoot angle on an arc, the arch lowers (navicular drop on a ruler slider), the tibia turns inward on its collar, and the pressure map on the mat and a tablet shifts to the inner arch. About 107 solids and 336 sensor cells. | `node examples/foot-pronation/build.mjs` |
-| [`countermovement-jump`](examples/countermovement-jump) | A skeletal lower-limb model with a 75 kg trunk mass on a guide column jumps from a force plate. It dips 31 cm, pushes to a 2.6 BW peak and takes off at 2.60 m/s. The amplifier screen traces the force, and the ruler tracks the centre of mass through 34.5 cm, 530 ms of flight and a 3.7 BW landing. The joint angles are solved from the centre-of-mass height. | `node examples/countermovement-jump/build.mjs` |
-| [`knee-joint`](examples/knee-joint) | A left knee on a seated knee-extension bench: the femur in a vise, the tibia and fibula hinged at the condyles, menisci, cruciate and collateral ligaments, and a patella riding the trochlea between the quadriceps and patellar tendons. A load cell sits on the quadriceps cable, with a goniometer and a 10 kg weight. Flex it from 0 to 90° for quadriceps and patellofemoral force. About 75 solids. | `node examples/knee-joint/build.mjs` |
-| [`calf-raise`](examples/calf-raise) | A heel raise as a second-class lever. A skeletal lower leg and foot under 70 kg rolls about the ball of the foot while the Achilles tendon pulls through an inline load cell, read on a bench dial: 2.8 × BW at heel-off, 1.7 × BW at 30° and 9.3 cm. About 76 solids. | `node examples/calf-raise/build.mjs` |
-| [`hip-abductors`](examples/hip-abductors) | A pelvis balanced on one femoral head in single-leg stance. The lumbar spine carries 5/6 of body weight 10.5 cm medial to the hip, the gluteus medius pulls through a load cell 5 cm lateral, and a load pin reads the hip joint force (2.55 × BW). Lean the trunk 10° over the stance hip and it falls to 1.8 × BW. About 86 solids. | `node examples/hip-abductors/build.mjs` |
+| [`gait-cycle`](examples/gait-cycle) | A pink anatomical left leg walks one stride. Its bones are capped in cartilage, and 13 muscles redden as they fire in typical surface-EMG timing through Perry's eight phases. A floor contact patch grows with the double-hump ground reaction force (1.15 / 0.79 / 1.11 × BW). | `node examples/gait-cycle/build.mjs` |
+| [`foot-pronation`](examples/foot-pronation) | A pink anatomical left foot and lower leg. Evert the heel from −6° to +12°: the arch drops past 10 mm, the spring ligament and plantar fascia stretch, tibialis posterior deepens from pink to red as it works to hold the arch, and the floor contact print moves to the inner side of the foot. | `node examples/foot-pronation/build.mjs` |
+| [`countermovement-jump`](examples/countermovement-jump) | A lower-body anatomical model (skeleton, pink muscles on tendons and a translucent skin) does a countermovement jump. Its gluteus, quadriceps and calf muscles deepen from pink to red through braking, propulsion and landing. It takes off at 2.60 m/s for a 34.5 cm, 530 ms flight. | `node examples/countermovement-jump/build.mjs` |
+| [`knee-joint`](examples/knee-joint) | A large pink anatomical model of the left knee: condyles and patella capped in cartilage, menisci, and cruciate and collateral ligaments. The quadriceps reddens as it pulls through the patella, and the patella's cartilage flushes with patellofemoral force (peak 665 N at 45°), as the knee flexes from 0 to 90° against a 10 kg ankle weight. | `node examples/knee-joint/build.mjs` |
+| [`calf-raise`](examples/calf-raise) | An anatomical model of the lower leg and foot during a heel raise. The foot rolls on the ball of the foot as the gastrocnemius and soleus pull through the Achilles tendon, going from red at heel-off (2.8 × BW) to paler at 30° (1.7 × BW). | `node examples/calf-raise/build.mjs` |
+| [`hip-abductors`](examples/hip-abductors) | A pelvis balanced on one femoral head in single-leg stance: bone, cartilage, the gluteus medius and minimus, TFL, iliotibial band and femoral vessels inside a translucent skin. The abductors redden and the femoral head's load patch darkens as they carry 1.75 and 2.55 × BW, and both fade as the trunk leans 10° over the stance hip. | `node examples/hip-abductors/build.mjs` |
 
 The models use typical textbook values (Winter, Perry, Pauwels and published moment-arm curves), not one subject's data. They are for teaching, not clinical use.
 
@@ -274,6 +274,7 @@ anatomy/
 │   ├── iso-kit.ts            the core: camera, solids, parts, SVG renderer, card and page, CSS
 │   ├── iso-kit.mjs           the same core as plain ESM, for Node build scripts
 │   ├── iso.css               the kit's CSS, both themes
+│   ├── tissue.mjs            the pink tissue palette and muscle activation for anatomy
 │   ├── react/                draw.tsx (server-safe components), live.tsx (client hooks)
 │   ├── lathe.mjs             round parts on any axis
 │   ├── tube.mjs              pipes, tubes and cables
@@ -294,7 +295,7 @@ anatomy/
 │   ├── inline-kit.mjs        the kit as source, to inline into a standalone page
 │   ├── turn-check.mjs        3D checks in the browser (with turn-fidelity.mjs)
 │   └── turn-bench.mjs        3D timing in Node
-├── examples/                 six biomechanics figures, built pages committed
+├── examples/                 six anatomical models, built pages committed
 ├── tests/fixtures/           reference images and a built 3D page for the regression tests
 ├── evals/evals.json          test prompts and what a good answer contains
 └── .github/                  issue forms, PR template, CI, README images
@@ -314,7 +315,7 @@ anatomy/
 ## Limits
 
 - **It is not a chart library.** There are no axes, series or data plots. Numbers appear as a live readout driven by a model, and as the true sizes and counts of the parts.
-- **It draws skeletal anatomy models mounted on lab instruments,** as well as machines, instruments and tools. It does not draw realistic people, skin or exact maps. The bones are turned and prism solids, close to a teaching model rather than true anatomical surfaces. An idea that has no mechanism to build will come out weaker.
+- **It draws anatomical teaching models, not photoreal people.** Bones and muscles are smooth turned and prism solids with their landmarks, so they are close to a classroom model rather than sculpted anatomical surfaces, and skin is a translucent outline. An idea that has no mechanism to build will come out weaker.
 - **It is slow on purpose.** A figure takes a long session: the parts list, the geometry, the audit, and close-ups of every joint in both themes. Each biomechanics build takes seconds, and a full 3D orbit audit takes 15 to 20 minutes for 30 parts.
 - **Shaders need WebGL.** Without it the SVG still reads, and under reduced motion every figure goes still.
 
