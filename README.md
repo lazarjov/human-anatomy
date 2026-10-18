@@ -54,10 +54,10 @@ The CLI asks which agents to set up (Claude Code, Antigravity, OpenCode, Codex, 
 Then, in Claude Code:
 
 ```text
-/anatomy show what happens at the knee in a deep squat, interactive
+/human-anatomy show what happens at the knee in a deep squat, interactive
 ```
 
-For Antigravity, OpenCode, Codex, or MiniMax Code, target that agent: `-a antigravity`, `-a opencode`, `-a codex`, or `-a minimax-code`. Antigravity, OpenCode and MiniMax Code take the same `/anatomy` command; in Codex, type `$anatomy`.
+For Antigravity, OpenCode, Codex, or MiniMax Code, target that agent: `-a antigravity`, `-a opencode`, `-a codex`, or `-a minimax-code`. Antigravity, OpenCode and MiniMax Code take the same `/human-anatomy` command; in Codex, type `$human-anatomy`.
 
 That's it. No API keys and nothing to `npm install`: the kit uses only Node's built-in modules.
 
@@ -110,18 +110,18 @@ Anatomy is a standard [Agent Skill](https://agentskills.io): a folder with a `SK
 
 | | Command | Installs to |
 |---|---|---|
-| **skills CLI**, for you (Claude Code) | `npx skills add lazarjov/human-anatomy -g -a claude-code` | `~/.claude/skills/anatomy` |
-| **skills CLI**, for you (Antigravity) | `npx skills add lazarjov/human-anatomy -g -a antigravity` | `~/.gemini/antigravity/skills/anatomy` |
-| **skills CLI**, for you (OpenCode) | `npx skills add lazarjov/human-anatomy -g -a opencode` | `~/.config/opencode/skills/anatomy` |
-| **skills CLI**, for you (Codex) | `npx skills add lazarjov/human-anatomy -g -a codex` | `~/.agents/skills/anatomy` |
-| **skills CLI**, for you (MiniMax Code) | `npx skills add lazarjov/human-anatomy -g -a minimax-code` | `~/.minimax/skills/anatomy` |
-| **skills CLI**, for one project | `npx skills add lazarjov/human-anatomy` | `.claude/skills/anatomy` for Claude Code, `.agents/skills/anatomy` for Antigravity, OpenCode and Codex, `.minimax/skills/anatomy` for MiniMax Code |
-| **git**, for you (Claude Code) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.claude/skills/anatomy` | `~/.claude/skills/anatomy` |
-| **git**, for you (Antigravity) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.gemini/antigravity/skills/anatomy` | `~/.gemini/antigravity/skills/anatomy` |
-| **git**, for you (OpenCode) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.config/opencode/skills/anatomy` | `~/.config/opencode/skills/anatomy` |
-| **git**, for you (Codex) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.agents/skills/anatomy` | `~/.agents/skills/anatomy` |
-| **git**, for you (MiniMax Code) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.minimax/skills/anatomy` | `~/.minimax/skills/anatomy` |
-| **git**, for one project | `git clone https://github.com/lazarjov/human-anatomy.git .claude/skills/anatomy` | `.claude/skills/anatomy` (Claude Code and OpenCode) or `.agents/skills/anatomy` (Antigravity, OpenCode, Codex and MiniMax Code) |
+| **skills CLI**, for you (Claude Code) | `npx skills add lazarjov/human-anatomy -g -a claude-code` | `~/.claude/skills/human-anatomy` |
+| **skills CLI**, for you (Antigravity) | `npx skills add lazarjov/human-anatomy -g -a antigravity` | `~/.gemini/antigravity/skills/human-anatomy` |
+| **skills CLI**, for you (OpenCode) | `npx skills add lazarjov/human-anatomy -g -a opencode` | `~/.config/opencode/skills/human-anatomy` |
+| **skills CLI**, for you (Codex) | `npx skills add lazarjov/human-anatomy -g -a codex` | `~/.agents/skills/human-anatomy` |
+| **skills CLI**, for you (MiniMax Code) | `npx skills add lazarjov/human-anatomy -g -a minimax-code` | `~/.minimax/skills/human-anatomy` |
+| **skills CLI**, for one project | `npx skills add lazarjov/human-anatomy` | `.claude/skills/human-anatomy` for Claude Code, `.agents/skills/human-anatomy` for Antigravity, OpenCode and Codex, `.minimax/skills/human-anatomy` for MiniMax Code |
+| **git**, for you (Claude Code) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.claude/skills/human-anatomy` | `~/.claude/skills/human-anatomy` |
+| **git**, for you (Antigravity) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.gemini/antigravity/skills/human-anatomy` | `~/.gemini/antigravity/skills/human-anatomy` |
+| **git**, for you (OpenCode) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.config/opencode/skills/human-anatomy` | `~/.config/opencode/skills/human-anatomy` |
+| **git**, for you (Codex) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.agents/skills/human-anatomy` | `~/.agents/skills/human-anatomy` |
+| **git**, for you (MiniMax Code) | `git clone https://github.com/lazarjov/human-anatomy.git ~/.minimax/skills/human-anatomy` | `~/.minimax/skills/human-anatomy` |
+| **git**, for one project | `git clone https://github.com/lazarjov/human-anatomy.git .claude/skills/human-anatomy` | `.claude/skills/human-anatomy` (Claude Code and OpenCode) or `.agents/skills/human-anatomy` (Antigravity, OpenCode, Codex and MiniMax Code) |
 | **Download**, no git | see below | any of the folders above |
 
 <details>
@@ -129,7 +129,7 @@ Anatomy is a standard [Agent Skill](https://agentskills.io): a folder with a `SK
 
 <br>
 
-The [`skills`](https://github.com/vercel-labs/skills) CLI finds the `SKILL.md` at the root of this repository and installs it as `anatomy`. By default it installs into the current project and asks which agents to set up. `-g` installs it for your user, and `-a claude-code` sets up Claude Code only. Use `-a antigravity`, `-a opencode`, `-a codex` or `-a minimax-code` for Antigravity, OpenCode, Codex or MiniMax Code only.
+The [`skills`](https://github.com/vercel-labs/skills) CLI finds the `SKILL.md` at the root of this repository and installs it as `human-anatomy`. By default it installs into the current project and asks which agents to set up. `-g` installs it for your user, and `-a claude-code` sets up Claude Code only. Use `-a antigravity`, `-a opencode`, `-a codex` or `-a minimax-code` for Antigravity, OpenCode, Codex or MiniMax Code only.
 
 The CLI copies the whole repository, examples included (about 10 MB). It needs a recent Node.js: version 1.7.1 of the CLI asks for 22.20 or later.
 
@@ -140,7 +140,7 @@ The CLI copies the whole repository, examples included (about 10 MB). It needs a
 
 <br>
 
-Clone the repository into one of the skill folders, so that `SKILL.md` ends up at `<skills folder>/anatomy/SKILL.md`. For Claude Code use `~/.claude/skills/anatomy` or `.claude/skills/anatomy`. For Antigravity use `~/.gemini/antigravity/skills/anatomy` or `.agents/skills/anatomy`. For OpenCode use `~/.config/opencode/skills/anatomy` or `.opencode/skills/anatomy`; OpenCode also reads the Claude Code and `.agents` folders. For Codex use `~/.agents/skills/anatomy` or `.agents/skills/anatomy`. For MiniMax Code use `~/.minimax/skills/anatomy` (or `$MINIMAX_DATA_DIR/skills/anatomy` if you moved its data folder) or `.minimax/skills/anatomy`; MiniMax Code also reads the Claude Code, Codex and `.agents` folders. For a project install, commit the folder so your team gets it too. To update later, `git pull` inside that folder.
+Clone the repository into one of the skill folders, so that `SKILL.md` ends up at `<skills folder>/human-anatomy/SKILL.md`. For Claude Code use `~/.claude/skills/human-anatomy` or `.claude/skills/human-anatomy`. For Antigravity use `~/.gemini/antigravity/skills/human-anatomy` or `.agents/skills/human-anatomy`. For OpenCode use `~/.config/opencode/skills/human-anatomy` or `.opencode/skills/human-anatomy`; OpenCode also reads the Claude Code and `.agents` folders. For Codex use `~/.agents/skills/human-anatomy` or `.agents/skills/human-anatomy`. For MiniMax Code use `~/.minimax/skills/human-anatomy` (or `$MINIMAX_DATA_DIR/skills/human-anatomy` if you moved its data folder) or `.minimax/skills/human-anatomy`; MiniMax Code also reads the Claude Code, Codex and `.agents` folders. For a project install, commit the folder so your team gets it too. To update later, `git pull` inside that folder.
 
 </details>
 
@@ -149,27 +149,27 @@ Clone the repository into one of the skill folders, so that `SKILL.md` ends up a
 
 <br>
 
-[Download the ZIP](https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.zip), unpack it, rename the folder from `human-anatomy-main` to `anatomy`, and move it into `~/.claude/skills/` (Claude Code), `~/.gemini/antigravity/skills/` (Antigravity), `~/.config/opencode/skills/` (OpenCode), `~/.agents/skills/` (Codex) or `~/.minimax/skills/` (MiniMax Code).
+[Download the ZIP](https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.zip), unpack it, rename the folder from `human-anatomy-main` to `human-anatomy`, and move it into `~/.claude/skills/` (Claude Code), `~/.gemini/antigravity/skills/` (Antigravity), `~/.config/opencode/skills/` (OpenCode), `~/.agents/skills/` (Codex) or `~/.minimax/skills/` (MiniMax Code).
 
 Or in one line on macOS or Linux:
 
 ```sh
-mkdir -p ~/.claude/skills/anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.claude/skills/anatomy
+mkdir -p ~/.claude/skills/human-anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.claude/skills/human-anatomy
 ```
 
-For Antigravity, OpenCode, Codex or MiniMax Code, put the same files in `~/.gemini/antigravity/skills/anatomy`, `~/.config/opencode/skills/anatomy`, `~/.agents/skills/anatomy` or `~/.minimax/skills/anatomy`:
+For Antigravity, OpenCode, Codex or MiniMax Code, put the same files in `~/.gemini/antigravity/skills/human-anatomy`, `~/.config/opencode/skills/human-anatomy`, `~/.agents/skills/human-anatomy` or `~/.minimax/skills/human-anatomy`:
 
 ```sh
-mkdir -p ~/.gemini/antigravity/skills/anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.gemini/antigravity/skills/anatomy
+mkdir -p ~/.gemini/antigravity/skills/human-anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.gemini/antigravity/skills/human-anatomy
 ```
 
 ```sh
-mkdir -p ~/.config/opencode/skills/anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.config/opencode/skills/anatomy
+mkdir -p ~/.config/opencode/skills/human-anatomy && curl -L https://github.com/lazarjov/human-anatomy/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 -C ~/.config/opencode/skills/human-anatomy
 ```
 
 </details>
 
-Claude Code picks up new skills in a running session. If the `skills` folder itself did not exist when the session started, run `/reload-skills`. Antigravity and OpenCode list it as `/anatomy` in their chat; restart if it does not show. Codex lists it under `/skills` and runs it with `$anatomy`; restart Codex if it does not show. MiniMax Code lists it as `/anatomy`; restart `mcode` if it does not show.
+Claude Code picks up new skills in a running session. If the `skills` folder itself did not exist when the session started, run `/reload-skills`. Antigravity and OpenCode list it as `/human-anatomy` in their chat; restart if it does not show. Codex lists it under `/skills` and runs it with `$human-anatomy`; restart Codex if it does not show. MiniMax Code lists it as `/human-anatomy`; restart `mcode` if it does not show.
 
 <details>
 <summary><b>Codex: if the browser checks are blocked</b></summary>
@@ -199,10 +199,10 @@ Starting Codex with `--sandbox danger-full-access` also works, but it lifts ever
 
 ## Usage
 
-Type `/anatomy` (in Codex, `$anatomy`) and say what the figure should explain:
+Type `/human-anatomy` (in Codex, `$human-anatomy`) and say what the figure should explain:
 
 ```text
-/anatomy explain why running loads the Achilles tendon more than walking, interactive
+/human-anatomy explain why running loads the Achilles tendon more than walking, interactive
 ```
 
 You don't have to name the skill. Claude also loads it when you ask for an isometric illustration, an explanatory figure for docs, a blog post or a landing page, or an interactive explainer. Antigravity, OpenCode, Codex and MiniMax Code do the same.
@@ -213,19 +213,19 @@ You don't have to name the skill. Claude also loads it when you ask for an isome
 <br>
 
 ```text
-/anatomy the shoulder's rotator cuff as a force couple with the deltoid during arm abduction from 0 to 150°, with scapulohumeral rhythm 2:1. Standalone HTML, light theme.
+/human-anatomy the shoulder's rotator cuff as a force couple with the deltoid during arm abduction from 0 to 150°, with scapulohumeral rhythm 2:1. Standalone HTML, light theme.
 ```
 
 ```text
-/anatomy a running stride versus a walking stride: double support vanishes, a flight phase appears, the vertical force goes from a double hump to one 2.5 BW impact peak, and the calf fires earlier and harder. Dark theme.
+/human-anatomy a running stride versus a walking stride: double support vanishes, a flight phase appears, the vertical force goes from a double hump to one 2.5 BW impact peak, and the calf fires earlier and harder. Dark theme.
 ```
 
 ```text
-/anatomy the spine's lumbar discs under load: lifting 20 kg with a bent back versus a squat, L5/S1 compression from the erector spinae moment arm of about 5 cm. One HTML file, light theme.
+/human-anatomy the spine's lumbar discs under load: lifting 20 kg with a bent back versus a squat, L5/S1 compression from the erector spinae moment arm of about 5 cm. One HTML file, light theme.
 ```
 
 ```text
-/anatomy the windlass mechanism of the plantar fascia: dorsiflexing the big toe raises the arch and locks the foot for push-off. A React component plus a static HTML preview.
+/human-anatomy the windlass mechanism of the plantar fascia: dorsiflexing the big toe raises the arch and locks the foot for push-off. A React component plus a static HTML preview.
 ```
 
 </details>
@@ -268,7 +268,7 @@ For the geometry audit (`--audit`) and the 3D orbit audit, see [`references/veri
 <br>
 
 ```text
-anatomy/
+human-anatomy/
 ├── SKILL.md                  the skill: workflow, setup and craft rules
 ├── kit/                      the drawing library
 │   ├── iso-kit.ts            the core: camera, solids, parts, SVG renderer, card and page, CSS

@@ -11,6 +11,7 @@ All notable changes to Anatomy are recorded here. The format follows [Keep a Cha
 
 ### Changed
 
+- The skill is now called `human-anatomy`: `name: human-anatomy` in `SKILL.md`, invoked as `/human-anatomy` (`$human-anatomy` in Codex) and installed into `skills/human-anatomy` folders.
 - The six biomechanics examples are redrawn as pink anatomical models, with no instruments or machine parts. Each muscle's activation comes from its model (EMG-style timing for gait and the jump, force over peak force elsewhere), and the readouts carry the numbers.
 - `evals/evals.json` now holds anatomy prompts (ankle ligaments, the Achilles stretch-shortening cycle, a lumbar disc, a sprint start and the windlass mechanism) in place of the original machine prompts.
 

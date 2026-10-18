@@ -13,32 +13,32 @@ You need:
 - **Claude Code**, Antigravity, OpenCode, Codex or MiniMax Code, to try the skill itself.
 
 ```sh
-git clone https://github.com/wheresryan22/anatomy.git
-cd anatomy
+git clone https://github.com/lazarjov/human-anatomy.git
+cd human-anatomy
 ```
 
 To use your working copy as the skill while you change it, link it into your personal skills folder (move any installed copy out of the way first):
 
 ```sh
-ln -s "$PWD" ~/.claude/skills/anatomy
+ln -s "$PWD" ~/.claude/skills/human-anatomy
 ```
 
 For Antigravity, for OpenCode, for Codex, or for MiniMax Code:
 
 ```sh
-ln -s "$PWD" ~/.gemini/antigravity/skills/anatomy
+ln -s "$PWD" ~/.gemini/antigravity/skills/human-anatomy
 ```
 
 ```sh
-ln -s "$PWD" ~/.config/opencode/skills/anatomy
+ln -s "$PWD" ~/.config/opencode/skills/human-anatomy
 ```
 
 ```sh
-ln -s "$PWD" ~/.agents/skills/anatomy
+ln -s "$PWD" ~/.agents/skills/human-anatomy
 ```
 
 ```sh
-ln -s "$PWD" ~/.minimax/skills/anatomy
+ln -s "$PWD" ~/.minimax/skills/human-anatomy
 ```
 
 ## Building the examples

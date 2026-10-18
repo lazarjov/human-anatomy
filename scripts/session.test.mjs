@@ -17,7 +17,7 @@ function session() {
   writeFileSync(join(root, "-work", `${id}.jsonl`), lines([
     user(0, "fix the readme"),
     reply(1, "m0", 50, 50),
-    user(5, "/anatomy explain how a token bucket works, interactive"),
+    user(5, "/human-anatomy explain how a token bucket works, interactive"),
     reply(6, "m1", 100, 200),
     reply(6, "m1", 100, 400),
     reply(8, "m2", 10, 20),
@@ -31,7 +31,7 @@ function session() {
 
 test("time and tokens cover the figure's request up to the publish request", () => {
   const { root, id } = session();
-  const result = fromThisSession({ prompt: "/anatomy explain how a token bucket works, interactive", env: { CLAUDE_CODE_SESSION_ID: id }, root });
+  const result = fromThisSession({ prompt: "/human-anatomy explain how a token bucket works, interactive", env: { CLAUDE_CODE_SESSION_ID: id }, root });
   assert.equal(result.tokens, 1100 + 400 + 1030 + 1030 + 1600);
   assert.equal(result.minutes, 3 + 10);
   assert.equal(result.from, at(5));

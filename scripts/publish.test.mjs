@@ -39,7 +39,7 @@ test("skill paths are rewritten to the gallery's .skill link, and nothing else",
 test("publishing copies only the source, under the author, and it rebuilds byte for byte", () => {
   const repo = gallery();
   try {
-    const { dest, figure } = publish({ source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "Hip abductors", prompt: "/anatomy a hip in single-leg stance", author: "Octo-Cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true });
+    const { dest, figure } = publish({ source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "Hip abductors", prompt: "/human-anatomy a hip in single-leg stance", author: "Octo-Cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true });
     assert.equal(dest, join(repo, "figures", "octo-cat", "hip-abductors"));
     assert.equal(figure.author, "Octo-Cat");
     assert.ok(!existsSync(join(dest, "src", "hip-abductors.html")) && !existsSync(join(dest, "src", "hip-abductors-light.html")) && !existsSync(join(dest, "poster.png")), "no built pages or poster are left");
@@ -69,7 +69,7 @@ test("publisher accepts only the gallery's supported licenses", () => {
   const repo = gallery();
   const command = (license, id) => spawnSync(process.execPath, [
     join(SKILL, "scripts", "publish.mjs"), join(SKILL, "examples", "hip-abductors"),
-    "--into", repo, "--id", id, "--title", "Hip abductors", "--prompt", "/anatomy a hip in single-leg stance",
+    "--into", repo, "--id", id, "--title", "Hip abductors", "--prompt", "/human-anatomy a hip in single-leg stance",
     "--author", "Octo-Cat", "--license", license, "--no-preview",
   ], { encoding: "utf8" });
   try {
@@ -105,7 +105,7 @@ test("--submit: people who can push get a branch; everyone else a fork made for 
 
 test("a failed --force publish leaves the existing figure as it was", () => {
   const repo = gallery();
-  const common = { source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "Hip abductors", prompt: "/anatomy a hip in single-leg stance", author: "octo-cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true };
+  const common = { source: join(SKILL, "examples", "hip-abductors"), into: repo, id: "hip-abductors", title: "Hip abductors", prompt: "/human-anatomy a hip in single-leg stance", author: "octo-cat", agent: "Codex", license: "MIT", build: "build.mjs", tags: [], date: "2026-10-12", noPreview: true };
   try {
     const { dest } = publish(common);
     const before = readFileSync(join(dest, "figure.json"), "utf8");
