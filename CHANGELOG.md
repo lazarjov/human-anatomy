@@ -7,11 +7,12 @@ All notable changes to Anatomy are recorded here. The format follows [Keep a Cha
 ### Added
 
 - `kit/tissue.mjs`: a pink tissue palette (bone, muscle, tendon, cartilage, ligament, skin, vessel, nerve) for both themes, with muscle activation that deepens a muscle from rose to red.
-- Six human anatomy and biomechanics examples, each a skeletal model on a lab instrument driven by a pure `model.mjs`: `gait-cycle`, `foot-pronation`, `countermovement-jump`, `knee-joint`, `calf-raise` and `hip-abductors`. They come with README gallery images, CI build steps and a SKILL.md entry.
+- Six human anatomy and biomechanics examples, each an anatomical model driven by a pure `model.mjs`: `gait-cycle`, `foot-pronation`, `countermovement-jump`, `knee-joint`, `calf-raise` and `hip-abductors`. They come with README gallery images, CI build steps and a SKILL.md entry.
 
 ### Changed
 
 - The six biomechanics examples are redrawn as pink anatomical models, with no instruments or machine parts. Each muscle's activation comes from its model (EMG-style timing for gait and the jump, force over peak force elsewhere), and the readouts carry the numbers.
+- `evals/evals.json` now holds anatomy prompts (ankle ligaments, the Achilles stretch-shortening cycle, a lumbar disc, a sprint start and the windlass mechanism) in place of the original machine prompts.
 
 ### Removed
 
